@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameOverUI : MonoBehaviour
@@ -12,12 +13,18 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreTxt;
     [SerializeField] private RawImage screenShot;
 
+    [SerializeField] private Button retryBtn;
+    [SerializeField] private Button lobbyBtn;
+
     private Coroutine runningCoroutine;
 
     private void Awake()
     {
         backGround.SetActive(false);
         gameOverPopup.SetActive(false);
+
+        retryBtn.onClick.AddListener(OnClickRetryButton);
+        lobbyBtn.onClick.AddListener(OnClickLobbyButton);
     }
 
     public void ActivateGameOverUI(int score)
@@ -46,5 +53,15 @@ public class GameOverUI : MonoBehaviour
         
         backGround.SetActive(true);
         gameOverPopup.SetActive(true);
+    }
+
+    private void OnClickRetryButton()
+    {
+        SceneManager.LoadScene("Game");
+    }
+
+    private void OnClickLobbyButton()
+    {
+        SceneManager.LoadScene("Lobby");
     }
 }

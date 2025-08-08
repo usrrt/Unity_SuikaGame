@@ -19,6 +19,8 @@ public class FruitControlManager : MonoBehaviour
 
     private void Start()
     {
+        isGameOver = false;
+
         nextFruitIdx = Random.Range(0, fruitPrefabs.Length/2);
         nextFruitPreviewImg.sprite = fruitPrefabs[nextFruitIdx].GetComponent<SpriteRenderer>().sprite;
 

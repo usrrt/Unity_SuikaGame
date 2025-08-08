@@ -5,11 +5,11 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
-    
+
     public FruitControlManager fruitControlManager;
     public TextMeshProUGUI scoreTxt;
     public TextMeshProUGUI bestScoreTxt;
-    
+
     [SerializeField] GameOverUI gameOverUI;
 
     private int _score;
@@ -37,16 +37,19 @@ public class ScoreManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
             Instance = this;
         else
             Destroy(gameObject);
-        
+
         LoadBestScore();
     }
 
     private void Start()
     {
+        Time.timeScale = 1;
+
+
         UpdateScoreTxt();
         UpdateBestScoreTxt();
     }
@@ -64,8 +67,9 @@ public class ScoreManager : MonoBehaviour
             {
                 _bestScore = _score;
                 PlayerPrefs.SetInt("BestScore", _bestScore);
-            };
-            
+            }
+            ;
+
             gameOverUI.ActivateGameOverUI(Score);
         }
     }
@@ -80,10 +84,10 @@ public class ScoreManager : MonoBehaviour
         if (scoreTxt != null)
             scoreTxt.text = _score.ToString();
     }
-    
+
     private void UpdateBestScoreTxt()
     {
-        if (bestScoreTxt != null) 
+        if (bestScoreTxt != null)
             bestScoreTxt.text = _bestScore.ToString();
     }
 
