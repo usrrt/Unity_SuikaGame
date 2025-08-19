@@ -48,6 +48,7 @@ public class FruitMergeHandler : MonoBehaviour
 
                 Destroy(other.gameObject);
                 Destroy(gameObject);
+
             }
         }
     }

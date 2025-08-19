@@ -5,15 +5,17 @@ using UnityEngine.UI;
 
 public class UI_LobbyManager : MonoBehaviour
 {
-    [SerializeField] Button starBtn;
+    [SerializeField] Button startBtn;
 
     private void Awake()
     {
-        starBtn.onClick.AddListener(OnClickStartBtn);
+        startBtn.onClick.AddListener(OnClickStartBtn);
     }
 
     private void OnClickStartBtn()
     {
-        SceneManager.LoadScene("Game");
+        SoundManager.Instance.PlaySFX("Click");
+
+        startBtn.GetComponent<StartBtn>().ClickEffect();
     }
 }

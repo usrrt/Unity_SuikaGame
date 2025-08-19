@@ -51,6 +51,8 @@ public class FruitControlManager : MonoBehaviour
 
         currentFruit = null;
         dropIndicator.SetActive(false);
+
+        SoundManager.Instance.PlaySFX("Drop");
     }
 
 
@@ -77,6 +79,8 @@ public class FruitControlManager : MonoBehaviour
         evolveFruit.AddComponent<Rigidbody2D>();
         evolveFruit.GetComponent<Collider2D>().enabled = true;
         evolveFruit.gameObject.tag = "DroppedFruit";
+
+        SoundManager.Instance.PlaySFX("Pop");
     }
 
     public void SpawnAndPrepareNextFruit()
