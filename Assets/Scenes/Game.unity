@@ -2184,6 +2184,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text (Retry)
       objectReference: {fileID: 0}
+    - target: {fileID: 9024823941013468702, guid: 03d8e227ebf72534eba62d7c8f9de551, type: 3}
+      propertyPath: shrinkScale
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9024823941013468702, guid: 03d8e227ebf72534eba62d7c8f9de551, type: 3}
+      propertyPath: shrinkDuration
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2887,7 +2895,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 1
   autoRandomSeed: 1
   startDelay:
@@ -7602,6 +7610,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1066409258}
+  - component: {fileID: 1066409259}
   m_Layer: 5
   m_Name: GameOverPopup
   m_TagString: Untagged
@@ -7628,9 +7637,27 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 1100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1066409259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066409257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bab439be7e0a504ebe6ad6b088e9b95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originPos: {x: 0, y: 0, z: 0}
+  popUpRectTransform: {fileID: 0}
+  downDuration: 0.5
+  downDist: 1100
+  downEase: 0
+  popUpParticle: {fileID: 1002472186}
 --- !u!1 &1152816308
 GameObject:
   m_ObjectHideFlags: 0
@@ -8365,6 +8392,14 @@ PrefabInstance:
     - target: {fileID: 8273118011259238711, guid: 03d8e227ebf72534eba62d7c8f9de551, type: 3}
       propertyPath: m_Name
       value: Text (Lobby)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9024823941013468702, guid: 03d8e227ebf72534eba62d7c8f9de551, type: 3}
+      propertyPath: shrinkScale
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9024823941013468702, guid: 03d8e227ebf72534eba62d7c8f9de551, type: 3}
+      propertyPath: shrinkDuration
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -57,11 +57,12 @@ public class GameOverUI : MonoBehaviour
 
     private void OnClickRetryButton()
     {
-        SceneManager.LoadScene("Game");
+        retryBtn.GetComponent<ButtonEffectManager>().ClickEffect(() => SceneManager.LoadScene("Game"));
+        
     }
 
     private void OnClickLobbyButton()
     {
-        SceneManager.LoadScene("Lobby");
+        lobbyBtn.GetComponent<ButtonEffectManager>().ClickEffect(() => SceneManager.LoadScene("Lobby"));
     }
 }

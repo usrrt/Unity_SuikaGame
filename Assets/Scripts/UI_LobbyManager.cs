@@ -16,6 +16,6 @@ public class UI_LobbyManager : MonoBehaviour
     {
         SoundManager.Instance.PlaySFX("Click");
 
-        startBtn.GetComponent<StartBtn>().ClickEffect();
+        startBtn.GetComponent<ButtonEffectManager>().ClickEffect(() => SceneManager.LoadScene("Game"));
     }
 }

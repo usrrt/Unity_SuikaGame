@@ -3,9 +3,10 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
-public class StartBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ButtonEffectManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private Image btnImage;
     private RectTransform btnRectTransform;
@@ -70,14 +71,24 @@ public class StartBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         floatingSeq.SetLoops(-1);
     }
 
-    public void ClickEffect()
+    /*
+     DOTween은 보통 Update() 루프를 따라가기 때문에, Time.timeScale 영향을 받아서 Time.timeScale = 0 이면 멈춰버립니다.
+    하지만 UI 애니메이션, 로딩 화면, 페이드 인/아웃 같은 건 TimeScale = 0이어도 돌아가야한다. 
+    이럴 때 SetUpdate()를 사용
+
+    SetUpdate(true) → TimeScale 무시하고 항상 실행(UI/페이드 등에 유용)
+     */
+
+    public void ClickEffect(Action compeleteAction)
     {
         // OnComplete : 효과 완료 후 람다함수 실행
-        btnRectTransform.DOScale(shrinkScale, shrinkDuration).SetEase(shrinkEase).OnComplete(() =>
+        btnRectTransform.DOScale(shrinkScale, shrinkDuration).SetEase(shrinkEase).SetUpdate(true).OnComplete(() =>
         {
-            btnRectTransform.DOScale(1f, shrinkDuration).SetEase(Ease.OutBounce).OnComplete(() =>
+            btnRectTransform.DOScale(1f, shrinkDuration).SetEase(Ease.OutBounce).SetUpdate(true).OnComplete(() =>
             {
-                SceneManager.LoadScene("Game");
+                // 재사용성을 높이기 위해 액션 매개변수 활용
+                compeleteAction?.Invoke();
+                // SceneManager.LoadScene("Game");
             });
         });
 
