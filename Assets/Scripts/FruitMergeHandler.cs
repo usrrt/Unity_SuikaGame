@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class FruitMergeHandler : MonoBehaviour
@@ -33,7 +34,7 @@ public class FruitMergeHandler : MonoBehaviour
 
                 isMerging = true;
                 mergeFruit.isMerging = true;
-                
+
                 // 점수 획득
                 ScoreManager.Instance.AddScore(currentLvl);
 
@@ -46,11 +47,35 @@ public class FruitMergeHandler : MonoBehaviour
 
                 fruitControlManager.SpawnEvolveFruit(evolveIdx, evolveFruitSpawnPos);
 
-                Destroy(other.gameObject);
-                Destroy(gameObject);
+                //Destroy(other.gameObject);
+                //Destroy(gameObject);
+
+                StartCoroutine(MergeEffect(gameObject));
+                StartCoroutine(MergeEffect(other.gameObject));
 
             }
         }
+    }
+
+    private IEnumerator MergeEffect(GameObject fruit)
+    {
+        Material mat = fruit.GetComponent<SpriteRenderer>().material;
+
+        float edgeProgress = 0f;
+        mat.SetFloat("_edgeVal", edgeProgress);
+
+        float effectDuration = 0.1f;
+        float effectSpeed = 1f / effectDuration;
+
+        while (edgeProgress < 1f)
+        {
+            edgeProgress += Time.deltaTime * effectSpeed;
+            mat.SetFloat("_edgeVal", edgeProgress);
+
+            yield return null;
+        }
+
+        Destroy(fruit);
     }
 
     /*
